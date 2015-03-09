@@ -4,11 +4,11 @@
         <field id="tpd3" name="Nombre" width="51" order="0"/>
         <field id="tpd4" name="Fecha de inicio" width="24" order="1"/>
         <field id="tpd5" name="Fecha de fin" width="24" order="2"/>
-        <timeline><![CDATA[11]]></timeline>
+        <timeline><![CDATA[11,15]]></timeline>
     </view>
     <view id="resource-table">
-        <field id="0" name="Nombre" width="56" order="0"/>
-        <field id="1" name="Función" width="43" order="1"/>
+        <field id="0" name="Nombre" width="52" order="0"/>
+        <field id="1" name="Función" width="47" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -40,7 +40,7 @@
             <notes><![CDATA[Comprar 8870 DTMF, $300
 ]]></notes>
         </task>
-        <task id="2" name="Circuito 8870" color="#666666" meeting="false" start="2015-03-06" duration="2" complete="15" priority="2" expand="true">
+        <task id="2" name="Circuito 8870" color="#666666" meeting="false" start="2015-03-06" duration="2" complete="60" priority="2" expand="true">
             <notes><![CDATA[Elaborar u prototipo del decodificador de tonos para línea.]]></notes>
         </task>
         <task id="4" name="Pruebas del circuito 8870" color="#0066cc" meeting="false" start="2015-03-10" duration="1" complete="0" expand="true">
