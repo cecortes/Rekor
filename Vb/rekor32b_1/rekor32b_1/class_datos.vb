@@ -5,9 +5,9 @@
 Public Class class_datos
     Private _idusuario As Integer
     Private _nombrecontacto As String
-    Private _idcasas As Integer
-    Private _telcasa As Integer
-    Private _telcel As Long
+    Private _idcasas As String
+    Private _telcasa As String
+    Private _telcel As String
 
     Public Property idusuario() As Integer
         Get

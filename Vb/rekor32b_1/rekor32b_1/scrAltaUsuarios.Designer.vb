@@ -115,8 +115,7 @@ Partial Class scrAltaUsuarios
         '
         'btnSaveClose
         '
-        Me.btnSaveClose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSaveClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.btnSaveClose.Image = CType(resources.GetObject("btnSaveClose.Image"), System.Drawing.Image)
         Me.btnSaveClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSaveClose.Location = New System.Drawing.Point(124, 599)
@@ -128,6 +127,7 @@ Partial Class scrAltaUsuarios
         '
         'btnLimpiar
         '
+        Me.btnLimpiar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnLimpiar.Image = CType(resources.GetObject("btnLimpiar.Image"), System.Drawing.Image)
         Me.btnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnLimpiar.Location = New System.Drawing.Point(612, 599)
@@ -156,8 +156,8 @@ Partial Class scrAltaUsuarios
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "scrAltaUsuarios"
-        Me.Text = "Rekór 32bits...             Alta de Usuarios                  César López (C)2015" & _
-            " "
+        Me.Text = "Rekór 32bits...             Alta de Usuarios                  WAB Ingeniería (C)2" & _
+            "015 "
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

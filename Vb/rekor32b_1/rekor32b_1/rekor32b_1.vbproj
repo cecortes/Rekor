@@ -82,6 +82,7 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="modulo_consulta.vb" />
     <Compile Include="mod_conex_global.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -104,10 +105,22 @@
     <Compile Include="mysqlSettings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="scrActualizarUsuarios.Designer.vb">
+      <DependentUpon>scrActualizarUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="scrActualizarUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="scrAltaUsuarios.Designer.vb">
       <DependentUpon>scrAltaUsuarios.vb</DependentUpon>
     </Compile>
     <Compile Include="scrAltaUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scrBajaUsuarios.Designer.vb">
+      <DependentUpon>scrBajaUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="scrBajaUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="_varglobal.vb" />
@@ -125,8 +138,14 @@
     <EmbeddedResource Include="mysqlSettings.resx">
       <DependentUpon>mysqlSettings.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="scrActualizarUsuarios.resx">
+      <DependentUpon>scrActualizarUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="scrAltaUsuarios.resx">
       <DependentUpon>scrAltaUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scrBajaUsuarios.resx">
+      <DependentUpon>scrBajaUsuarios.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
