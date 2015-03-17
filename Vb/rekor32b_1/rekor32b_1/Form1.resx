@@ -147,6 +147,26 @@
         ISx4qAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="ConexiónSerialToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAM7SURBVFhH1ZdLTxpRFMdVTCNuTGzTD9DEhnbT9Au08Yu46EfooquKG1cldeMr8RGNoqJpm9RQ
+        u2g1llh5DRhAogLiAGWA4eETXwNzes5tIAQf0eRCUpKTTO6dzPnd/3ncQ0PD//ILBoOadDr9PpPJ6LPZ
+        rF6WZX0ymWRGz7ROhu90h8PhFu7ncrlcLYeHh8rR0RHkcjlAR5BKpZjRM63hPhwfH6tWq7WdO4DT6dSW
+        APb39wFPWwagZ1ojOAIYGRl5yB3A4XBoDw4OlGQyCnt7fpAkqQyQkBIgin6gPQIYHh6uDQApEI2ZIRTu
+        hng8Dhh7ZpKUhEDoHeyJRgYwNDTEH8ButzMF0hkPyOnvzDHFHpMQlZAh+ucDgnylPFAHBwf5A1jX17WY
+        aAolmyynWQhisRhEo1GmBkFksznKBXVgYIA/gMVi0WKyKXRqcujxeEAQBNja2gIsOwZDauB+bRRYWFho
+        RcdKJBKBQCAAm5ub4Ha7mXm9Xtje3obw7i6BUBU84loFfr9ft7GxYcT4FitLMJFIAFnq38kxBFnqBypC
+        mXw+n44bxNzcXKeqqqAoyq12cXEBZ2dnkM/nYXZ2tpMbAMp/bwCTycQPYH5+/k4Al5eXcH5+Dqenp0Cq
+        cVPgJgBRFCESEcthqTlAoVCASsth0sl4Gdms62y9rgB+LEOqfbqIAjs7VwC4JuF1IQhiL4hhF1xZ/slu
+        QaqQUhWcnJzwrYLrAMjZ8vIP7ANSOQcqAWZmZmqfhD6fF9wu1xUAUqQuANT7JbwXSg2qpABNRkajkZ8C
+        1FTu2gmpB1C75gowNTX16j4AdGVPTEy85taI+vv72zGz41Trt90HFAKciGhYkXEse8wNYGlpqam3t7dj
+        enraYDabR3E2MBFIqfHQBYRrnxYXF0cnJyc/6vX6Z/heEzcA+tD4+HhjX1+fpqenp7mrq0tXLBaZGuSc
+        To1rLxGy2WAwaMbGxhq5Oq/+GA6dT6sBUPIXNXVa+XFMsI5qAFyrH8A3s7nNJQifMTElzPiIzWb7gjHn
+        P4jeJKnDbm9cs1ie4zj2NhQKvVldWXmCf8dqG/dqGLcgPBCczrZfq6utv9fWNHWLP29HfwGmF8qbwvUN
+        zgAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="AltaDeUsuariosToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -347,6 +367,9 @@
         rkJggg==
 </value>
   </data>
+  <metadata name="spPuerto.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>158, 17</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAkAAAAAAAEAIADtSgAAlgAAAICAAAABACAAKAgBAINLAABgYAAAAQAgAKiUAACrUwEASEgAAAEA

@@ -20,3 +20,4 @@ C:\Users\N30\Documents\Visual Studio 2010\Projects\rekor32b_1\rekor32b_1\obj\x86
 C:\Users\N30\documents\visual studio 2010\Projects\rekor32b_1\rekor32b_1\obj\x86\Debug\rekor32b_1.mysqlSettings.resources
 C:\Users\N30\Documents\Visual Studio 2010\Projects\rekor32b_1\rekor32b_1\obj\x86\Debug\rekor32b_1.scrBajaUsuarios.resources
 C:\Users\N30\Documents\Visual Studio 2010\Projects\rekor32b_1\rekor32b_1\obj\x86\Debug\rekor32b_1.scrActualizarUsuarios.resources
+C:\Users\N30\Documents\Visual Studio 2010\Projects\rekor32b_1\rekor32b_1\obj\x86\Debug\rekor32b_1.scrSerial.resources

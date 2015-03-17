@@ -22,7 +22,12 @@ Imports MySql.Data
 Imports MySql.Data.Types
 Imports MySql.Data.MySqlClient
 Public Class scrPrincipal
-
+    '****************************************************************************************************
+    'Variables Globales:
+    'Se declaran las variables que se ocupan dentro de este formulario
+    '****************************************************************************************************
+    Dim strBufferIn As String   'Variable para recibir el dato del puerto Serial
+    Dim strTmp As String        'Variable temporal para construir el código recibido por el DTMF
 
     Private Sub AltaDeUsuariosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AltaDeUsuariosToolStripMenuItem.Click
         scrAltaUsuarios.Show()
@@ -41,8 +46,14 @@ Public Class scrPrincipal
         'Deshabilitamos los elementos del formulario hasta que recibamos el código del usuario vía telefónica
         deshabilitar()
 
+        'Si la variable del puerto serial está vacía, llamamos al formulario para configurar el puerto
+        If _varglobal.puertoSerial = "" Then
+            scrSerial.Show()
+        End If
         'DEBUG
         'habilitar()
+        'scrSerial.Show()
+        'tmrTimer.Enabled = False
     End Sub
 
     Private Sub BajadeUsuariosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BajadeUsuariosToolStripMenuItem.Click
@@ -146,5 +157,60 @@ Public Class scrPrincipal
 
         fecha_hora()
         actualizar_cbox()
+    End Sub
+
+    Private Sub ConexiónSerialToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConexiónSerialToolStripMenuItem.Click
+        scrSerial.Show()
+    End Sub
+
+    Private Sub ConectarAlDTMFToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConectarAlDTMFToolStripMenuItem.Click
+        'Esta función se ocupa para abrir el puerto serial e iniciar la comunicación USB
+        'Si el estado de la conexión está listo abrimos el puerto serial e iniciamos la comunicación USB
+        If _varglobal.edoConexion = True Then
+            spPuerto.Close()
+            'Le pasamos el nombre del puerto por medio de la variable de la clase _varglobal
+            spPuerto.PortName = _varglobal.puertoSerial
+            'Abrimos el puerto serial
+            spPuerto.Open()
+            'Mostramos el mensaje para el usuario indicando que la comunicación USB está lista
+            MessageBox.Show("Conexión USB exitosa." & vbNewLine & _varglobal.puertoSerial, "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            'Si el edoConexión es falso entonces llamamos a configurar los parámetros de conexión
+            MessageBox.Show("No se ha iniciado la comunicación USB, configure los parámetros." & vbNewLine & "" & vbNewLine & "Puerto Serial (común): COM3" & vbNewLine & "" & vbNewLine & "Puede revisar en el administrador de dispositivos para saber el nombre del puerto serial.", "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            scrSerial.Show()
+        End If
+    End Sub
+
+    Private Sub DesconectarDelFTMFToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DesconectarDelFTMFToolStripMenuItem.Click
+        'Esta función cierra el puerto serial y termina la comunicación USB
+        spPuerto.Close()
+        _varglobal.edoConexion = False
+        _varglobal.puertoSerial = ""
+        MessageBox.Show("La conexión USB ha sido terminada." & vbNewLine & _varglobal.puertoSerial, "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub spPuerto_DataReceived(ByVal sender As Object, ByVal e As System.IO.Ports.SerialDataReceivedEventArgs) Handles spPuerto.DataReceived
+        'Esta función es llamada cada vez que se recibe un dato
+        'Cargamos el dato recibido en su variable
+        strBufferIn = spPuerto.ReadLine
+        'Si el dato es diferente de cero, guardamos el dato en una variable temporal
+        If strBufferIn <> "" Then
+            'Removemos los saltos de línea y guardamos en una variable temporal
+            strTmp = Replace(Replace(strBufferIn, vbCr, "*"), vbLf, "b")
+        End If
+        'Limpiamos el puerto serial para recibir el siguiente dato
+        spPuerto.DiscardInBuffer()
+        'Rutina para recibir el asterisco del DTMF = 11*
+        If strTmp = "11*" Then
+            'Llamamos a la función habilitar desde un método seguro
+            Me.Invoke(New EventHandler(AddressOf habilitar))
+
+            MessageBox.Show("Acceso habilitado desde el número telefónico." & vbNewLine & _varglobal.puertoSerial, "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            'Limpiamos la variable temporal
+            strTmp = ""
+            'Des habilitamos los elementos del formulario
+            deshabilitar()
+        End If
     End Sub
 End Class

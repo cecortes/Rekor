@@ -10,4 +10,8 @@ Public Class _varglobal
     Public Shared pass As String
     'Variable para la llave primaria de la tabla usuarios de mysql
     Public Shared usuario_index As Integer
+    'Variable para guardar el nombre del puerto serial
+    Public Shared puertoSerial As String
+    'Variable para abrir el puerto serial
+    Public Shared edoConexion As Boolean
 End Class

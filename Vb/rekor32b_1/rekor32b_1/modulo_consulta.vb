@@ -25,6 +25,7 @@ Module modulo_consulta
             _adaptador.SelectCommand.ExecuteNonQuery()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message, "Rekor 32bits", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End
         Finally
             cerrar()
         End Try

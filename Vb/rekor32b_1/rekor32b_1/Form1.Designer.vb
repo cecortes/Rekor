@@ -22,10 +22,14 @@ Partial Class scrPrincipal
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(scrPrincipal))
         Me.mnuPrincipal = New System.Windows.Forms.MenuStrip()
         Me.ConfiguraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BaseDeDatosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConexiónSerialToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConectarAlDTMFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DesconectarDelFTMFToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AltaDeUsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BajadeUsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -51,6 +55,7 @@ Partial Class scrPrincipal
         Me.Label8 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.btnGrabar = New System.Windows.Forms.Button()
+        Me.spPuerto = New System.IO.Ports.SerialPort(Me.components)
         Me.mnuPrincipal.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +74,7 @@ Partial Class scrPrincipal
         '
         'ConfiguraciónToolStripMenuItem
         '
-        Me.ConfiguraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BaseDeDatosToolStripMenuItem})
+        Me.ConfiguraciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BaseDeDatosToolStripMenuItem, Me.ConexiónSerialToolStripMenuItem})
         Me.ConfiguraciónToolStripMenuItem.Name = "ConfiguraciónToolStripMenuItem"
         Me.ConfiguraciónToolStripMenuItem.Size = New System.Drawing.Size(114, 24)
         Me.ConfiguraciónToolStripMenuItem.Text = "&Configuración"
@@ -81,8 +86,32 @@ Partial Class scrPrincipal
         Me.BaseDeDatosToolStripMenuItem.Image = CType(resources.GetObject("BaseDeDatosToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BaseDeDatosToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.BaseDeDatosToolStripMenuItem.Name = "BaseDeDatosToolStripMenuItem"
-        Me.BaseDeDatosToolStripMenuItem.Size = New System.Drawing.Size(189, 38)
+        Me.BaseDeDatosToolStripMenuItem.Size = New System.Drawing.Size(197, 38)
         Me.BaseDeDatosToolStripMenuItem.Text = "&Base de Datos"
+        '
+        'ConexiónSerialToolStripMenuItem
+        '
+        Me.ConexiónSerialToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(184, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.ConexiónSerialToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConectarAlDTMFToolStripMenuItem, Me.DesconectarDelFTMFToolStripMenuItem})
+        Me.ConexiónSerialToolStripMenuItem.Image = CType(resources.GetObject("ConexiónSerialToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ConexiónSerialToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ConexiónSerialToolStripMenuItem.Name = "ConexiónSerialToolStripMenuItem"
+        Me.ConexiónSerialToolStripMenuItem.Size = New System.Drawing.Size(197, 38)
+        Me.ConexiónSerialToolStripMenuItem.Text = "C&onexión Serial"
+        '
+        'ConectarAlDTMFToolStripMenuItem
+        '
+        Me.ConectarAlDTMFToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(184, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.ConectarAlDTMFToolStripMenuItem.Name = "ConectarAlDTMFToolStripMenuItem"
+        Me.ConectarAlDTMFToolStripMenuItem.Size = New System.Drawing.Size(228, 24)
+        Me.ConectarAlDTMFToolStripMenuItem.Text = "Con&ectar al DTMF"
+        '
+        'DesconectarDelFTMFToolStripMenuItem
+        '
+        Me.DesconectarDelFTMFToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(184, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.DesconectarDelFTMFToolStripMenuItem.Name = "DesconectarDelFTMFToolStripMenuItem"
+        Me.DesconectarDelFTMFToolStripMenuItem.Size = New System.Drawing.Size(228, 24)
+        Me.DesconectarDelFTMFToolStripMenuItem.Text = "Desconectar del &DTMF"
         '
         'UsuariosToolStripMenuItem
         '
@@ -282,7 +311,7 @@ Partial Class scrPrincipal
         '
         Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(780, 393)
+        Me.Label8.Location = New System.Drawing.Point(780, 473)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(131, 25)
         Me.Label8.TabIndex = 15
@@ -292,7 +321,7 @@ Partial Class scrPrincipal
         '
         Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox2.BackColor = System.Drawing.SystemColors.ControlLightLight
-        Me.PictureBox2.Location = New System.Drawing.Point(785, 421)
+        Me.PictureBox2.Location = New System.Drawing.Point(785, 501)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(180, 180)
         Me.PictureBox2.TabIndex = 16
@@ -309,6 +338,10 @@ Partial Class scrPrincipal
         Me.btnGrabar.TabIndex = 17
         Me.btnGrabar.Text = "&Grabar"
         Me.btnGrabar.UseVisualStyleBackColor = True
+        '
+        'spPuerto
+        '
+        Me.spPuerto.BaudRate = 115200
         '
         'scrPrincipal
         '
@@ -376,5 +409,9 @@ Partial Class scrPrincipal
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents btnGrabar As System.Windows.Forms.Button
+    Friend WithEvents ConexiónSerialToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents spPuerto As System.IO.Ports.SerialPort
+    Friend WithEvents ConectarAlDTMFToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DesconectarDelFTMFToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
