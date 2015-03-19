@@ -20,6 +20,8 @@ void GrabarRFID()
   memcpy(serNum, str, 5);
   if(status == MI_OK)
   {
+    //Primero mandamos el HandShake al Rekor para que pueda almacenar el RFID en la base de datos
+    Serial.println("$");
     //Si no hay error leemos el número serial
     checksum1 = serNum[0] ^ serNum[1] ^ serNum[2] ^ serNum[3];
 //    Serial.print("* ");            //Only debug
@@ -43,6 +45,7 @@ void GrabarRFID()
     String temp3 = String(serNum[3], HEX);
     String temp4 = String(serNum[4], HEX);
     rfidDat = temp0 + temp1 + temp2 + temp3 + temp4;
+    delay(250);
     Serial.println(rfidDat);
   }	
 }
