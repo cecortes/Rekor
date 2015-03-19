@@ -28,6 +28,8 @@ Public Class scrPrincipal
     '****************************************************************************************************
     Dim strBufferIn As String   'Variable para recibir el dato del puerto Serial
     Dim strTmp As String        'Variable temporal para construir el código recibido por el DTMF
+    Dim rfidEstado As Boolean = False 'Variable para saber si se va a recibir el número serial de la tarjeta
+    Dim rfidSN As String        'Variable para guardar el número serial del RFID
 
     Private Sub AltaDeUsuariosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AltaDeUsuariosToolStripMenuItem.Click
         scrAltaUsuarios.Show()
@@ -54,6 +56,7 @@ Public Class scrPrincipal
         'habilitar()
         'scrSerial.Show()
         'tmrTimer.Enabled = False
+        btnGrabar.Enabled = True
     End Sub
 
     Private Sub BajadeUsuariosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BajadeUsuariosToolStripMenuItem.Click
@@ -200,17 +203,45 @@ Public Class scrPrincipal
         End If
         'Limpiamos el puerto serial para recibir el siguiente dato
         spPuerto.DiscardInBuffer()
+        'Debug-------------------------------------------------------------------------------------------
+        'MessageBox.Show(strTmp)
+        '------------------------------------------------------------------------------------------------
         'Rutina para recibir el asterisco del DTMF = 11*
         If strTmp = "11*" Then
             'Llamamos a la función habilitar desde un método seguro
             Me.Invoke(New EventHandler(AddressOf habilitar))
-
+            'Mensaje de usuario
             MessageBox.Show("Acceso habilitado desde el número telefónico." & vbNewLine & _varglobal.puertoSerial, "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf strTmp = "$*" Then
+            'rfidEstado es True lo que signfica que el siguiente dato USB es el número serial de la tarjeta RFID
+            rfidEstado = True
+            'Debug-------------------------------------------------------------------------------------------
+            'MessageBox.Show("true")
+            '------------------------------------------------------------------------------------------------
+        ElseIf rfidEstado = True Then
+            'strTmp contiene el número serial de la RFID, guardamos todos los datos y el RFID en la tabla visitas
+            'Debug-------------------------------------------------------------------------------------------
+            MessageBox.Show(strTmp)
+            '------------------------------------------------------------------------------------------------
         Else
             'Limpiamos la variable temporal
             strTmp = ""
-            'Des habilitamos los elementos del formulario
-            deshabilitar()
+            'Des habilitamos los elementos del formulario desde un método seguro
+            'Me.Invoke(New EventHandler(AddressOf deshabilitar))
+            'Re iniciamos rfidEstado a su estado inicial false
+            rfidEstado = False
+        End If
+    End Sub
+
+    Private Sub btnGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGrabar.Click
+        'Función para mandar un dato por el puerto serial y pedirle al módulo RFID regrese el SN de la tarjeta RFID
+        If spPuerto.IsOpen Then
+            'Envíamos el comando al Arduino para leer el RFID, si es que el puerto está abierto
+            spPuerto.Write("#")
+        Else
+            'Mostramos un mensaje al usuario y lo mandamos al panel de conexión
+            MessageBox.Show("Puerto COM se encuentra desconectado." & vbNewLine & "Favor de revisar la configuración", "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            scrSerial.Show()
         End If
     End Sub
 End Class
