@@ -56,7 +56,7 @@ Public Class scrPrincipal
         'habilitar()
         'scrSerial.Show()
         'tmrTimer.Enabled = False
-        btnGrabar.Enabled = True
+        'btnGrabar.Enabled = True
     End Sub
 
     Private Sub BajadeUsuariosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BajadeUsuariosToolStripMenuItem.Click
@@ -162,6 +162,66 @@ Public Class scrPrincipal
         actualizar_cbox()
     End Sub
 
+    Private Sub guardarVisitante()
+        'Esta función se encarga de capturar los datos del visitante y guardarlos en la tabla visitas
+        Dim conexion As New class_insert_datos
+        Dim datos As New class_datos
+
+        'Checamos que los datos no esten vacíos
+        If txtNombreVisita.Text = "" Then
+            MessageBox.Show("El campo de Nombre no puede estar vacío", "Rekor 32bits", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+        If cmbIdVisita.Text = "" Then
+            MessageBox.Show("El tipo de identificación no puede estar vacío", "Rekor 32bits", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+        If txtFechaVisita.Text = "" Then
+            MessageBox.Show("El campo de Fecha de ingreso no puede estar vacío", "Rekor 32bits", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+        If txtHoraVisita.Text = "" Then
+            MessageBox.Show("El campo de Hora de ingreso no puede estar vacío", "Rekor 32bits", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+        If cmbIdcasaVisita.Text = "" Then
+            MessageBox.Show("El número de casa no puede estar vacío", "Rekor 32bits", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
+        'Capturamos los datos del visitante en las variables de la clase class_datos
+        datos.nombrevisita = txtNombreVisita.Text
+        datos.tipoid = cmbIdVisita.Text
+        datos.fechaingreso = txtFechaVisita.Text
+        datos.horaingreso = txtHoraVisita.Text
+        datos.ncasas = cmbIdcasaVisita.Text
+        datos.snrfid = rfidSN
+
+        ''Dentro de un IF insertamos los datos en la tabla de visitas
+        If conexion.insertarVisitas(datos) Then
+            MessageBox.Show("Los datos del visitante han sido guardados correctamente" & vbNewLine & "" & vbNewLine & "La tarjeta RFID ya puede ser entregada al visitante, Gracias", "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'Actualizamos los campos de Fecha y Hora
+            fecha_hora()
+            'Llamamos a la función para limpiar los datos
+            limpiarFormulario()
+            'Des habilitamos el panel para recibir otro visitante
+            deshabilitar()
+        Else
+            MessageBox.Show("Datos del visitante no guardados", "Rekor 32bits", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'Actualizamos los campos de Fecha y Hora
+            fecha_hora()
+        End If
+    End Sub
+
+    Private Sub limpiarFormulario()
+        txtNombreVisita.Text = ""
+        cmbIdVisita.Text = ""
+        txtFechaVisita.Text = ""
+        txtHoraVisita.Text = ""
+        actualizar_cbox()
+        lblNombreUsuario.Text = ""
+        fecha_hora()
+    End Sub
+
     Private Sub ConexiónSerialToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConexiónSerialToolStripMenuItem.Click
         scrSerial.Show()
     End Sub
@@ -220,14 +280,20 @@ Public Class scrPrincipal
             '------------------------------------------------------------------------------------------------
         ElseIf rfidEstado = True Then
             'strTmp contiene el número serial de la RFID, guardamos todos los datos y el RFID en la tabla visitas
+            'Capturamos el número serial del RFID y lo guardamos en la variable que le corresponde
+            rfidSN = strTmp
+            'Mensaje para el usuario que le muestra el número de serie de la tarjeta
+            MessageBox.Show("Los datos del visitante serán guardados en la tarjeta RFID: " & vbNewLine & "" & vbNewLine & rfidSN & vbNewLine & "" & vbNewLine & "Por el momento no mueva la tarjeta RFID del lector.", "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             'Debug-------------------------------------------------------------------------------------------
-            MessageBox.Show(strTmp)
+            'MessageBox.Show(rfidSN)
             '------------------------------------------------------------------------------------------------
+            'Llamamos a la función que se encarga de guardar los datos en la tabla visitas2
+            Me.Invoke(New EventHandler(AddressOf guardarVisitante))
         Else
             'Limpiamos la variable temporal
             strTmp = ""
             'Des habilitamos los elementos del formulario desde un método seguro
-            'Me.Invoke(New EventHandler(AddressOf deshabilitar))
+            Me.Invoke(New EventHandler(AddressOf deshabilitar))
             'Re iniciamos rfidEstado a su estado inicial false
             rfidEstado = False
         End If
