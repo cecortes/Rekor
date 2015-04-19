@@ -1,0 +1,15 @@
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\bin\Debug\rekorRfidWebCam.exe
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\bin\Debug\rekorRfidWebCam.pdb
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\bin\Debug\rekorRfidWebCam.xml
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrPrincipal.resources
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.Resources.resources
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.vbproj.GenerateResource.Cache
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.exe
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.xml
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.pdb
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.mysqlSettings.resources
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrSerial.resources
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrAltaUsuarios.resources
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrBajaUsuarios.resources
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrActualizarUsuarios.resources
+C:\Users\N30\Documents\Visual Studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.vbprojResolveAssemblyReference.cache
