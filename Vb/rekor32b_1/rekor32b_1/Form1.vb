@@ -303,10 +303,10 @@ Public Class scrPrincipal
         'Función para mandar un dato por el puerto serial y pedirle al módulo RFID regrese el SN de la tarjeta RFID
         If spPuerto.IsOpen Then
             'Envíamos el comando al Arduino para leer el RFID, si es que el puerto está abierto
-            spPuerto.Write("#")
+            spPuerto.Write("=")
         Else
             'Mostramos un mensaje al usuario y lo mandamos al panel de conexión
-            MessageBox.Show("Puerto COM se encuentra desconectado." & vbNewLine & "Favor de revisar la configuración", "Rekors CPU 32bits", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Puerto COM se encuentra desconectado." & vbNewLine & "Favor de revisar la configuración", "Rekór RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Information)
             scrSerial.Show()
         End If
     End Sub
