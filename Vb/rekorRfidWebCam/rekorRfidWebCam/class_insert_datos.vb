@@ -32,7 +32,7 @@ Public Class class_insert_datos
         Dim estado As Boolean = True
         Try
             conexion_Global()
-            _adaptador.InsertCommand = New MySqlCommand("insert into visitas2 (nombrevisita, tipoid, fechaingreso, horaingreso, horasalida, ncasas, snrfid) values (@nombrevisita, @tipoid, @fechaingreso, @horaingreso, @horasalida, @ncasas, @snrfid)", _conexion)
+            _adaptador.InsertCommand = New MySqlCommand("insert into visitas2 (nombrevisita, tipoid, fechaingreso, horaingreso, horasalida, ncasas, snrfid, PicRostro, PicId) values (@nombrevisita, @tipoid, @fechaingreso, @horaingreso, @horasalida, @ncasas, @snrfid, @PicRostro, @PicId)", _conexion)
             _adaptador.InsertCommand.Parameters.Add("@nombrevisita", MySqlDbType.VarChar, 200).Value = datos.nombrevisita
             _adaptador.InsertCommand.Parameters.Add("@tipoid", MySqlDbType.VarChar, 10).Value = datos.tipoid
             _adaptador.InsertCommand.Parameters.Add("@fechaingreso", MySqlDbType.Date).Value = datos.fechaingreso
@@ -40,6 +40,8 @@ Public Class class_insert_datos
             _adaptador.InsertCommand.Parameters.Add("@horasalida", MySqlDbType.VarChar, 9).Value = datos.horasalida
             _adaptador.InsertCommand.Parameters.Add("@ncasas", MySqlDbType.VarChar, 6).Value = datos.ncasas
             _adaptador.InsertCommand.Parameters.Add("@snrfid", MySqlDbType.VarChar, 100).Value = datos.snrfid
+            _adaptador.InsertCommand.Parameters.Add("@PicRostro", MySqlDbType.VarChar, 200).Value = datos.PicRostro
+            _adaptador.InsertCommand.Parameters.Add("@PicId", MySqlDbType.VarChar, 200).Value = datos.PicId
             _conexion.Open()
             _adaptador.InsertCommand.Connection = _conexion
             _adaptador.InsertCommand.ExecuteNonQuery()

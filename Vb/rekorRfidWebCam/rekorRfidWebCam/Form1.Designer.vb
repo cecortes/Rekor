@@ -56,7 +56,6 @@ Partial Class scrPrincipal
         Me.txtNombreVisita = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.spPuerto = New System.IO.Ports.SerialPort(Me.components)
-        Me.lbUsbCam = New System.Windows.Forms.ListBox()
         Me.mnuPrincipal.SuspendLayout()
         CType(Me.pbxCredencial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbxRostro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -346,22 +345,11 @@ Partial Class scrPrincipal
         '
         Me.spPuerto.BaudRate = 115200
         '
-        'lbUsbCam
-        '
-        Me.lbUsbCam.BackColor = System.Drawing.Color.FromArgb(CType(CType(184, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(150, Byte), Integer))
-        Me.lbUsbCam.FormattingEnabled = True
-        Me.lbUsbCam.ItemHeight = 25
-        Me.lbUsbCam.Location = New System.Drawing.Point(50, 464)
-        Me.lbUsbCam.Name = "lbUsbCam"
-        Me.lbUsbCam.Size = New System.Drawing.Size(585, 79)
-        Me.lbUsbCam.TabIndex = 35
-        '
         'scrPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1006, 723)
-        Me.Controls.Add(Me.lbUsbCam)
         Me.Controls.Add(Me.btnGrabar)
         Me.Controls.Add(Me.pbxCredencial)
         Me.Controls.Add(Me.Label8)
@@ -427,6 +415,5 @@ Partial Class scrPrincipal
     Friend WithEvents ConectarAlDTMFToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DesconectarDTMFToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents spPuerto As System.IO.Ports.SerialPort
-    Friend WithEvents lbUsbCam As System.Windows.Forms.ListBox
 
 End Class

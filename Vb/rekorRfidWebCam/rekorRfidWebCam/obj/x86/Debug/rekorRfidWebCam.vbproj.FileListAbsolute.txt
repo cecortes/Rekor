@@ -13,3 +13,6 @@ C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebC
 C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrBajaUsuarios.resources
 C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrActualizarUsuarios.resources
 C:\Users\N30\Documents\Visual Studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.vbprojResolveAssemblyReference.cache
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrPassAlta.resources
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrPassBaja.resources
+C:\Users\N30\documents\visual studio 2010\Projects\rekorRfidWebCam\rekorRfidWebCam\obj\x86\Debug\rekorRfidWebCam.scrPassActualizar.resources

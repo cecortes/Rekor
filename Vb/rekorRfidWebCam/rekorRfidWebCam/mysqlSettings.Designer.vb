@@ -85,11 +85,11 @@ Partial Class mysqlSettings
         'txtIp
         '
         Me.txtIp.Location = New System.Drawing.Point(208, 40)
-        Me.txtIp.MaxLength = 12
+        Me.txtIp.MaxLength = 20
         Me.txtIp.Name = "txtIp"
         Me.txtIp.Size = New System.Drawing.Size(212, 30)
         Me.txtIp.TabIndex = 8
-        Me.txtIp.Text = "192.168.1.92"
+        Me.txtIp.Text = "sh0me.ddns.net"
         Me.txtIp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label1

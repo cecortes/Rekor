@@ -126,6 +126,24 @@
     <Compile Include="scrBajaUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="scrPassActualizar.Designer.vb">
+      <DependentUpon>scrPassActualizar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="scrPassActualizar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scrPassAlta.Designer.vb">
+      <DependentUpon>scrPassAlta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="scrPassAlta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scrPassBaja.Designer.vb">
+      <DependentUpon>scrPassBaja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="scrPassBaja.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="scrSerial.Designer.vb">
       <DependentUpon>scrSerial.vb</DependentUpon>
     </Compile>
@@ -155,6 +173,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="scrBajaUsuarios.resx">
       <DependentUpon>scrBajaUsuarios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scrPassActualizar.resx">
+      <DependentUpon>scrPassActualizar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scrPassAlta.resx">
+      <DependentUpon>scrPassAlta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scrPassBaja.resx">
+      <DependentUpon>scrPassBaja.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="scrSerial.resx">
       <DependentUpon>scrSerial.vb</DependentUpon>

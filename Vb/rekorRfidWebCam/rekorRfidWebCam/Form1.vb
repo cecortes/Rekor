@@ -43,7 +43,8 @@ Public Class scrPrincipal
     Const HWND_BOTTOM As Short = 1
 
     Dim iDevice As Integer = 0      'Variable para el manejo del dispositivo
-    Dim hHwnd As Integer            'Variable para el manejo del Preview Capture
+    Dim hHwnd As Integer            'Variable para el manejo del Preview Capture Cam1
+    Dim hHwnd2 As Integer            'Variable para el manejo del Preview Capture Cam2
 
     '*************************************************************************************
     'Declaración de funciones que se encuentran dentro de la API user32.dll y avicap32.dll
@@ -58,7 +59,6 @@ Public Class scrPrincipal
     Declare Function SetWindowPos Lib "user32" Alias "SetWindowPos" (ByVal hwnd As Integer, ByVal hWndInsertAfter As Integer, ByVal x As Integer, ByVal y As Integer, ByVal cx As Integer, ByVal cy As Integer, ByVal wFlags As Integer) As Integer
     'Función para destruir la ventana dentro del API user32.dll
     Declare Function DestroyWindow Lib "user32" (ByVal hndw As Integer) As Boolean
-
     '****************************************************************************************************
     'Variables Globales:
     'Se declaran las variables que se ocupan dentro de este formulario
@@ -67,6 +67,13 @@ Public Class scrPrincipal
     Dim strTmp As String        'Variable temporal para construir el código recibido por el DTMF
     Dim rfidEstado As Boolean = False 'Variable para saber si se va a recibir el número serial de la tarjeta
     Dim rfidSN As String        'Variable para guardar el número serial del RFID
+    Dim CamCounter As Integer = 0   'Variable para guardar el número de webCams encontradas
+    Dim filePicRostro As String = "" 'Variable para guardar el nómbre del archivo para la foto del rostro de la visita
+    Dim pathFileRostro As String    'Variable para guardar el directorio + nombre del archivo del Rostro
+    Dim filePicId As String = "" 'Variable para guardar el nómbre del archivo para la foto de la credencial de la visita
+    Dim pathFileId As String    'Variable para guardar el directorio + nombre del archivo del Id
+    Dim RawHora As String     'Variable para guardar la hora sin caracter :
+    Dim RawFecha As String      'Variable para guardar la fecha sin caracter /
 
     Public Sub fecha_hora()
         'Esta función sirve para obtener la fecha y la hora, además de guardarlas en los campos que corresponden
@@ -173,6 +180,8 @@ Public Class scrPrincipal
         datos.horaingreso = txtHoraVisita.Text
         datos.ncasas = cmbIdcasaVisita.Text
         datos.snrfid = rfidSN
+        datos.PicRostro = pathFileRostro
+        datos.PicId = pathFileId
 
         ''Dentro de un IF insertamos los datos en la tabla de visitas
         If conexion.insertarVisitas(datos) Then
@@ -205,16 +214,16 @@ Public Class scrPrincipal
         listUsbCam()
 
         'Verificamos si existen dispositivos encontrados
-        If lbUsbCam.Items.Count > 0 Then
+        If CamCounter > 0 Then
             'Mostramos mensaje al usuario
-            MessageBox.Show("Existen: " & vbNewLine & vbNewLine & lbUsbCam.Items.Count.ToString & " WebCams encontradas", "Rekór RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            'MessageBox.Show("Existen: " & vbNewLine & vbNewLine & CamCounter & " WebCams encontradas", "Rekór RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Information)
             'Seleccionamos la primer cámara encontrada
-            lbUsbCam.SelectedIndex = 0
+            'lbUsbCam.SelectedIndex = 0
         Else
             'Mostramos mensaje al usuario que no se encontró ningún dispositivo
             MessageBox.Show("WebCam no encontradas")
             'Añadimos el mensaje en el listbox
-            lbUsbCam.Items.Add("Ninguna WebCam encontrada")
+            'lbUsbCam.Items.Add("Ninguna WebCam encontrada")
         End If
 
         'Hacemos que la imágen se ajuste al tamaño del picture box del rostro y de la credencial
@@ -236,19 +245,20 @@ Public Class scrPrincipal
 
             If bReturn Then
                 'Si encuentra un dispositivo lo agrega a la lista del lbUsbCam
-                lbUsbCam.Items.Add(strName.Trim)
+                'lbUsbCam.Items.Add(strName.Trim)       ------ INECESARIO
                 'Incrementamos el contador de dispositivos
                 x += 1
+                CamCounter += 1
             End If
             'Finaliza el ciclo cuando no encuentra más dispositivos
         Loop Until bReturn = False
     End Sub
 
     Public Sub iniciarWebCam()
-        'Función que inicia la cámara Web que este seleccionada
+        'Función que inicia la cámara Web 1 
 
         'Obtenemos el indice del dispositivo seleccionado en la lista de lbUsbCam
-        iDevice = lbUsbCam.SelectedIndex
+        iDevice = 0 'Es 0 porque es el número de controlador universal de las CAMs
 
         'Iniciamos la captura y la mostramos en el picture box pbxImagen
         hHwnd = capCreateCaptureWindowA(iDevice, WS_VISIBLE Or WS_CHILD, 0, 0, 640, 480, pbxRostro.Handle.ToInt32, 0)
@@ -269,28 +279,124 @@ Public Class scrPrincipal
         End If
     End Sub
 
+    Public Sub reconectCam1()
+        'Función que re conecta la cámara Web 1
+
+        'Dentro de un If intentamos conectarnos al dispòsitivo Usb
+        If SendMessage(hHwnd, WM_CAP_DRIVER_CONNECT, iDevice, 0) Then
+            'Configura la escala del Preview
+            SendMessage(hHwnd, WM_CAP_SET_SCALE, True, 0)
+            'Configura el Preview Rate en milisegundos
+            SendMessage(hHwnd, WM_CAP_SET_PREVIEWRATE, 66, 0)
+            'Inicia el Preview de la cámara Usb
+            SendMessage(hHwnd, WM_CAP_SET_PREVIEW, True, 0)
+            'Re dimensiona la ventana al tamaño del picture box pbxImagen
+            SetWindowPos(hHwnd, HWND_BOTTOM, 0, 0, pbxRostro.Width, pbxRostro.Height, SWP_NOMOVE Or SWP_NOZORDER)
+        Else
+            'Si existe algún error destruimos el Handler de la ventana
+            DestroyWindow(hHwnd)
+        End If
+    End Sub
+
+    Public Sub iniciarWebCam2()
+        'Función que inicia la cámara Web 2
+
+        'Obtenemos el indice del dispositivo seleccionado en la lista de lbUsbCam
+        iDevice = 0   'Es 0 porque es el número de controlador universal de las CAMs
+
+        'Iniciamos la captura y la mostramos en el picture box pbxImagen
+        hHwnd2 = capCreateCaptureWindowA(iDevice, WS_VISIBLE Or WS_CHILD, 0, 0, 640, 480, pbxCredencial.Handle.ToInt32, 0)
+
+        'Dentro de un If intentamos conectarnos al dispòsitivo Usb
+        If SendMessage(hHwnd2, WM_CAP_DRIVER_CONNECT, iDevice, 0) Then
+            'Configura la escala del Preview
+            SendMessage(hHwnd2, WM_CAP_SET_SCALE, True, 0)
+            'Configura el Preview Rate en milisegundos
+            SendMessage(hHwnd2, WM_CAP_SET_PREVIEWRATE, 66, 0)
+            'Inicia el Preview de la cámara Usb
+            SendMessage(hHwnd2, WM_CAP_SET_PREVIEW, True, 0)
+            'Re dimensiona la ventana al tamaño del picture box pbxImagen
+            SetWindowPos(hHwnd2, HWND_BOTTOM, 0, 0, pbxCredencial.Width, pbxCredencial.Height, SWP_NOMOVE Or SWP_NOZORDER)
+        Else
+            'Si existe algún error destruimos el Handler de la ventana
+            DestroyWindow(hHwnd2)
+        End If
+    End Sub
+
+    Public Sub reconectCam2()
+        'Función que re conecta la cámara Web 2
+
+        'Dentro de un If intentamos conectarnos al dispòsitivo Usb
+        If SendMessage(hHwnd2, WM_CAP_DRIVER_CONNECT, 0, 0) Then
+            'Configura la escala del Preview
+            SendMessage(hHwnd2, WM_CAP_SET_SCALE, True, 0)
+            'Configura el Preview Rate en milisegundos
+            SendMessage(hHwnd2, WM_CAP_SET_PREVIEWRATE, 66, 0)
+            'Inicia el Preview de la cámara Usb
+            SendMessage(hHwnd2, WM_CAP_SET_PREVIEW, True, 0)
+            'Re dimensiona la ventana al tamaño del picture box pbxImagen
+            SetWindowPos(hHwnd2, HWND_BOTTOM, 0, 0, pbxCredencial.Width, pbxCredencial.Height, SWP_NOMOVE Or SWP_NOZORDER)
+        Else
+            'Si existe algún error destruimos el Handler de la ventana
+            DestroyWindow(hHwnd2)
+            MessageBox.Show("Error cam2")
+        End If
+    End Sub
+
     Public Sub guardarWebCam()
         'Función para guardar la captura de la cámara Usb Seleccionada en formato .jpg y dentro de un directorio predefinido
-        Dim dataClipBoard As IDataObject    'Variable para manejar los datos del Porta Papeles o ClipBoard
+        Dim dataClipBoard As IDataObject    'Variable para manejar los datos del Porta Papeles o ClipBoard para la cam 1
+        Dim dataClipBoard2 As IDataObject    'Variable para manejar los datos del Porta Papeles o ClipBoard para la cam 2
         Dim bmpData As Image                'Variable para guardar los datos como Imágen Bmp
         Dim path As String = "C:\Users\N30\Documents\test\"                  'Variable para guardar la dirección del directorio donde se guarda la imágen
 
-        'Copiamos la imágen de la cámara al ClipBoard
+        'Quitamos el caracter "/" de la Fecha
+        RawFecha = Replace(txtFechaVisita.Text, "/", "")
+        'Quitamos el caracter ":" de la Hora
+        RawHora = Replace(txtHoraVisita.Text, ":", "")
+
+        'Copiamos la imágen de la cámara 1 al ClipBoard
         SendMessage(hHwnd, WM_CAP_EDIT_COPY, 0, 0)
 
-        'Obtenemos la imágen del ClipBoard y la guardamos como Imágen BMP
+        'Obtenemos la imágen del ClipBoard para la cam 1 y la guardamos como Imágen BMP
         dataClipBoard = Clipboard.GetDataObject()
 
-        'Dentro de un If verificamos que se guardo la variable como Imágen BMP
+        'Dentro de un If verificamos que se guardo la variable como Imágen BMP para la cam 1
         If dataClipBoard.GetDataPresent(GetType(System.Drawing.Bitmap)) Then
             'Realizamos la copia del ClipBoard y cambiamos de tipo a BMP dentro de la variable bmpData que es un Image
             bmpData = CType(dataClipBoard.GetData(GetType(System.Drawing.Bitmap)), Image)
             'Mostramos la imágen BMP dentro del picture box
             pbxRostro.Image = bmpData
-            'Cerramos la vista previa de la cámara
-            detenerWebCam()
+            'Creamos el nombre del archivo para la foto del rostro apartir de la fecha + hora + A
+            filePicRostro = RawFecha & RawHora & "A"
             'Guardamos el archivo como .jpg dentro del directorio pre establecido
-            bmpData.Save(path & "tst" & ".jpeg", Imaging.ImageFormat.Jpeg)
+            bmpData.Save(path & filePicRostro & ".jpeg", Imaging.ImageFormat.Jpeg)
+            'Guardamos la ruta del directorio + el nombre del archivo del rostro para insertarlo después en MySQL
+            pathFileRostro = path & filePicRostro & ".jpeg"
+
+            MessageBox.Show(pathFileRostro)
+        End If
+
+        'Copiamos la imágen de la cámara 2 al ClipBoard
+        SendMessage(hHwnd2, WM_CAP_EDIT_COPY, 0, 0)
+
+        'Obtenemos la imágen del ClipBoard para la cam 2 y la guardamos como Imágen BMP
+        dataClipBoard2 = Clipboard.GetDataObject()
+
+        'Dentro de un If verificamos que se guardo la variable como Imágen BMP para la cam 2
+        If dataClipBoard2.GetDataPresent(GetType(System.Drawing.Bitmap)) Then
+            'Realizamos la copia del ClipBoard y cambiamos de tipo a BMP dentro de la variable bmpData que es un Image
+            bmpData = CType(dataClipBoard2.GetData(GetType(System.Drawing.Bitmap)), Image)
+            'Mostramos la imágen BMP dentro del picture box
+            pbxCredencial.Image = bmpData
+            'Creamos el nombre del archivo para la foto del Id apartir de la fecha + hora + B
+            filePicId = RawFecha & RawHora & "B"
+            'Guardamos el archivo como .jpg dentro del directorio pre establecido
+            bmpData.Save(path & filePicId & ".jpeg", Imaging.ImageFormat.Jpeg)
+            'Guardamos la ruta del directorio + el nombre del archivo del id para insertarlo después en MySQL
+            pathFileId = path & filePicId & ".jpeg"
+
+            MessageBox.Show(pathFileId)
         End If
     End Sub
 
@@ -304,13 +410,30 @@ Public Class scrPrincipal
         DestroyWindow(hHwnd)
     End Sub
 
+    Public Sub detenerWebCam2()
+        'Función para detener la cámara USB y su Preview
+
+        'Detenemos la cámara Usb enviando el comando necesario
+        SendMessage(hHwnd2, WM_CAP_DRIVER_DISCONNECT, iDevice, 0)
+
+        'Destruimos el Handler de la ventana Preview
+        DestroyWindow(hHwnd2)
+    End Sub
+
+    Private Sub scrPrincipal_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
+        '** Función que se dispara al cerrar la aplicación
+        '** Llamamos a detener ambas cámaras
+        detenerWebCam()
+        detenerWebCam2()
+    End Sub
+
     Private Sub scrPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Mostramos el panel de parámetros de conexión para capturar los settings por default
         mysqlSettings.Show()
         'Cerramos imediatamente
         mysqlSettings.Close()
         'Deshabilitamos los elementos del formulario hasta que recibamos el código del usuario vía telefónica
-        'deshabilitar()
+        deshabilitar()
 
         'Si la variable del puerto serial está vacía, llamamos al formulario para configurar el puerto
         If _varglobal.puertoSerial = "" Then
@@ -318,12 +441,21 @@ Public Class scrPrincipal
         End If
 
         'Debug ***************************************************************************************************
+        'Hace la pantalla completa**************************************
+        'Me.Size = SystemInformation.PrimaryMonitorSize
+        'Me.Text = ""
+        'Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        'Me.Left = 0
+        'Me.Top = 0
+        'Hace la pantalla completa**************************************
         'Cargamos la lista de las cámaras Usb conectadas al sistema
         'Función para obtener la lista de cámaras usb conectadas al sistema
         obtnerUsbCam()
 
-        'Función para iniciar la cámara Usb
+        'Función para iniciar la cámara Usb 1
         iniciarWebCam()
+        'Función para iniciar la cámara Usb 2
+        iniciarWebCam2()
     End Sub
 
     Private Sub MySQLToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MySQLToolStripMenuItem.Click
@@ -337,18 +469,18 @@ Public Class scrPrincipal
     End Sub
 
     Private Sub AltaDeUsuariosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AltaDeUsuariosToolStripMenuItem.Click
-        'Llamamos a la pantalla para dar de alta al ususario
-        scrAltaUsuarios.Show()
+        'Llamamos a la pantalla de password para la alta de usuarios
+        scrPassAlta.Show()
     End Sub
 
     Private Sub BajadeUsuariosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BajadeUsuariosToolStripMenuItem.Click
-        'Llamamos a la pantalla para dar de baja a un usuario
-        scrBajaUsuarios.Show()
+        'Llamamos a la pantalla de password para dar de baja a un usuario
+        scrPassBaja.Show()
     End Sub
 
     Private Sub ModificarUsuariosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ModificarUsuariosToolStripMenuItem.Click
-        'Llamamos al formulario para actualizar datos del usuario
-        scrActualizarUsuarios.Show()
+        'Llamamos a la pantalla de password para actualizar datos del usuario
+        scrPassActualizar.Show()
     End Sub
 
     Private Sub ConectarAlDTMFToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConectarAlDTMFToolStripMenuItem.Click
@@ -406,7 +538,7 @@ Public Class scrPrincipal
         'Función para mandar un dato por el puerto serial y pedirle al módulo RFID regrese el SN de la tarjeta RFID
         If spPuerto.IsOpen Then
             'Envíamos el comando al Arduino para leer el RFID, si es que el puerto está abierto
-            spPuerto.Write("#")
+            spPuerto.Write("=")
         Else
             'Mostramos un mensaje al usuario y lo mandamos al panel de conexión
             MessageBox.Show("Puerto COM se encuentra desconectado." & vbNewLine & "Favor de revisar la configuración", "Rekór RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Information)

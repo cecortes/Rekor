@@ -9,4 +9,4 @@ Esta carpeta contiene los programas de Arduino, según se han completado en las 
    * Este programa ya tiene la compatibilidad de los pines para integrarse al Shield del DTMF y puede interactuar con Rekor.
    * (NOTA - todos los programas tienen que ir en la misma carpeta y crear las pestañas dentro del rfid_2.ino con el nonmbre de la(s) funciones que son ocupadas por este. ejemplo nombre pestaña, AntennaOn)
 
-   - RekorEntrada_1 - Este Programa tiene la función DTMF y RFID juntas
+   - RekorEntrada_1 - Este Programa tiene la función DTMF y RFID juntas sirve para Entrada y Salida

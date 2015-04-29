@@ -9,7 +9,7 @@ Public Class class_datos
     Private _idcasas As String
     Private _telcasa As String
     Private _telcel As String
-    '************************* Datos para la tabla visitas **********************************
+    '************************* Datos para la tabla visitas2 *********************************
     Private _idvisita As Integer
     Private _nombrevisita As String
     Private _tipoid As String
@@ -18,8 +18,8 @@ Public Class class_datos
     Private _horasalida As String
     Private _ncasas As String
     Private _snrfid As String
-    'Private _fotorostro As Byte
-    'Private _fotoid As Byte
+    Private _PicRostro As String
+    Private _PicId As String
 
     Public Property idusuario() As Integer
         Get
@@ -135,6 +135,24 @@ Public Class class_datos
         End Get
         Set(ByVal value As String)
             _snrfid = value
+        End Set
+    End Property
+
+    Public Property PicRostro() As String
+        Get
+            Return _PicRostro
+        End Get
+        Set(ByVal value As String)
+            _PicRostro = value
+        End Set
+    End Property
+
+    Public Property PicId() As String
+        Get
+            Return _PicId
+        End Get
+        Set(ByVal value As String)
+            _PicId = value
         End Set
     End Property
 End Class
