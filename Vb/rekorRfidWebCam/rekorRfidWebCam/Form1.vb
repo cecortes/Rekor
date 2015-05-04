@@ -592,4 +592,9 @@ Public Class scrPrincipal
             rfidEstado = False
         End If
     End Sub
+
+    Private Sub BusquedaPorFechaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BusquedaPorFechaToolStripMenuItem.Click
+        'Llamamos a la pantalla de password para habilitar la busqueda de registros
+        scrPassBusqueda.Show()
+    End Sub
 End Class

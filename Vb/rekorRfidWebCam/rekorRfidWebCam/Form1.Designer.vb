@@ -56,6 +56,7 @@ Partial Class scrPrincipal
         Me.txtNombreVisita = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.spPuerto = New System.IO.Ports.SerialPort(Me.components)
+        Me.BusquedaPorFechaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuPrincipal.SuspendLayout()
         CType(Me.pbxCredencial, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbxRostro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +152,7 @@ Partial Class scrPrincipal
         '
         'RegistrosToolStripMenuItem
         '
+        Me.RegistrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BusquedaPorFechaToolStripMenuItem})
         Me.RegistrosToolStripMenuItem.Name = "RegistrosToolStripMenuItem"
         Me.RegistrosToolStripMenuItem.Size = New System.Drawing.Size(82, 24)
         Me.RegistrosToolStripMenuItem.Text = "&Registros"
@@ -345,6 +347,15 @@ Partial Class scrPrincipal
         '
         Me.spPuerto.BaudRate = 115200
         '
+        'BusquedaPorFechaToolStripMenuItem
+        '
+        Me.BusquedaPorFechaToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(CType(CType(184, Byte), Integer), CType(CType(232, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.BusquedaPorFechaToolStripMenuItem.Image = CType(resources.GetObject("BusquedaPorFechaToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.BusquedaPorFechaToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.BusquedaPorFechaToolStripMenuItem.Name = "BusquedaPorFechaToolStripMenuItem"
+        Me.BusquedaPorFechaToolStripMenuItem.Size = New System.Drawing.Size(228, 38)
+        Me.BusquedaPorFechaToolStripMenuItem.Text = "Busqueda por Fecha"
+        '
         'scrPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
@@ -415,5 +426,6 @@ Partial Class scrPrincipal
     Friend WithEvents ConectarAlDTMFToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DesconectarDTMFToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents spPuerto As System.IO.Ports.SerialPort
+    Friend WithEvents BusquedaPorFechaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

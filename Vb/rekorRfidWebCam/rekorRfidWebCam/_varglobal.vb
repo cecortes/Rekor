@@ -13,4 +13,10 @@
     Public Shared puertoSerial As String
     'Variable para abrir el puerto serial
     Public Shared edoConexion As Boolean
+    'Variable para guardar el número de casa seleccionado
+    Public Shared ncasas As String
+    'Variable para guardar el inicio del periodo
+    Public Shared FechaInicio As Date
+    'Variable para guardar el final del periodo
+    Public Shared FechaFinal As Date
 End Class

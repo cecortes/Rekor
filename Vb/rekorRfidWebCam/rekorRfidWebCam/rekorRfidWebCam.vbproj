@@ -126,6 +126,12 @@
     <Compile Include="scrBajaUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="scrBusquedaRegistros.Designer.vb">
+      <DependentUpon>scrBusquedaRegistros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="scrBusquedaRegistros.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="scrPassActualizar.Designer.vb">
       <DependentUpon>scrPassActualizar.vb</DependentUpon>
     </Compile>
@@ -142,6 +148,12 @@
       <DependentUpon>scrPassBaja.vb</DependentUpon>
     </Compile>
     <Compile Include="scrPassBaja.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="scrPassBusqueda.Designer.vb">
+      <DependentUpon>scrPassBusqueda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="scrPassBusqueda.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="scrSerial.Designer.vb">
@@ -174,6 +186,9 @@
     <EmbeddedResource Include="scrBajaUsuarios.resx">
       <DependentUpon>scrBajaUsuarios.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="scrBusquedaRegistros.resx">
+      <DependentUpon>scrBusquedaRegistros.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="scrPassActualizar.resx">
       <DependentUpon>scrPassActualizar.vb</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="scrPassBaja.resx">
       <DependentUpon>scrPassBaja.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scrPassBusqueda.resx">
+      <DependentUpon>scrPassBusqueda.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="scrSerial.resx">
       <DependentUpon>scrSerial.vb</DependentUpon>
