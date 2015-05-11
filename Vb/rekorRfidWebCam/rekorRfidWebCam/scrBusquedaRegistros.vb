@@ -4,6 +4,12 @@ Imports MySql.Data.Types
 Imports MySql.Data.MySqlClient
 
 Public Class scrBusquedaRegistros
+    '****************************************************************************************************
+    'Variables Globales:
+    'Se declaran las variables que se ocupan dentro de este formulario
+    '****************************************************************************************************
+    Dim rostroPath As String    'Variable para guardar el directorio de la foto del rostro
+    Dim idPath As String        'Variable para guardar el directorio de la foto del id
 
     Public Sub deshabilitar()
         'Esta función se encarga de borrar los textos de las etiquetas del formulario
@@ -108,5 +114,46 @@ Public Class scrBusquedaRegistros
     Private Sub dtpFinal_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles dtpFinal.ValueChanged
         'Capturamos la fecha seleccionada y la guardamos en la variable global FechaInicio
         _varglobal.FechaFinal = dtpFinal.Text
+    End Sub
+
+    Private Sub dgvVisitas_CellMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles dgvVisitas.CellMouseClick
+        'Esta función se dispara cuando se hace click en los valores de la tabla, de esta manera se mostrarán las fotos
+        'en sus respectivos picture box
+        'Capturamos en una variable la fila seleccionada
+        Dim db As Integer
+        db = dgvVisitas.Rows(dgvVisitas.CurrentRow.Index).Cells(0).Value
+
+        'Función para consultar la tabla de visitas3 y extraer los datos del path
+        Dim comandoSql As MySqlCommand
+        Dim resultado As MySqlDataReader
+
+        'Conectamos a la base de datos dentro de un TRY
+        Try
+            conexion_Global()
+            _conexion.Open()
+            comandoSql = New MySqlCommand("select PicRostro, PicId from visitas3 where idvisita='" & db & "'", _conexion)
+            resultado = comandoSql.ExecuteReader
+            'Dentro de un ciclo leemos los resultados
+            While resultado.Read
+                rostroPath = resultado.GetString("PicRostro")
+                idPath = resultado.GetString("PicId")
+            End While
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message, "Rekor 32bits RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            cerrar()
+        End Try
+
+        'Mostramos las fotos en los picture box
+        'Hacemos que la imágen se ajuste al tamaño del picture box del rostro y de la credencial
+        pbxRostro.SizeMode = PictureBoxSizeMode.StretchImage
+        pbxId.SizeMode = PictureBoxSizeMode.StretchImage
+
+        Try
+            pbxRostro.Image = System.Drawing.Image.FromFile(rostroPath)
+            pbxId.Image = System.Drawing.Image.FromFile(idPath)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message & vbCrLf & vbCrLf & "Error al cargar la imágen, verifique que el equipo se encuentre conectado a la red.", "Rekor 32bits RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class

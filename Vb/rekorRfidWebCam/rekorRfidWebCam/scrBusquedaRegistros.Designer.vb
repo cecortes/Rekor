@@ -40,14 +40,14 @@ Partial Class scrBusquedaRegistros
         Me.dtpFinal = New System.Windows.Forms.DateTimePicker()
         Me.btnConsulta = New System.Windows.Forms.Button()
         Me.dgvVisitas = New System.Windows.Forms.DataGridView()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.pbxRostro = New System.Windows.Forms.PictureBox()
+        Me.pbxId = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvVisitas, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbxRostro, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pbxId, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -217,25 +217,25 @@ Partial Class scrBusquedaRegistros
         Me.dgvVisitas.Size = New System.Drawing.Size(977, 217)
         Me.dgvVisitas.TabIndex = 8
         '
-        'PictureBox1
+        'pbxRostro
         '
-        Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.BackColor = System.Drawing.Color.White
-        Me.PictureBox1.Location = New System.Drawing.Point(17, 471)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(320, 220)
-        Me.PictureBox1.TabIndex = 9
-        Me.PictureBox1.TabStop = False
+        Me.pbxRostro.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.pbxRostro.BackColor = System.Drawing.Color.White
+        Me.pbxRostro.Location = New System.Drawing.Point(17, 471)
+        Me.pbxRostro.Name = "pbxRostro"
+        Me.pbxRostro.Size = New System.Drawing.Size(320, 220)
+        Me.pbxRostro.TabIndex = 9
+        Me.pbxRostro.TabStop = False
         '
-        'PictureBox2
+        'pbxId
         '
-        Me.PictureBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox2.BackColor = System.Drawing.Color.White
-        Me.PictureBox2.Location = New System.Drawing.Point(674, 471)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(320, 220)
-        Me.PictureBox2.TabIndex = 10
-        Me.PictureBox2.TabStop = False
+        Me.pbxId.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.pbxId.BackColor = System.Drawing.Color.White
+        Me.pbxId.Location = New System.Drawing.Point(674, 471)
+        Me.pbxId.Name = "pbxId"
+        Me.pbxId.Size = New System.Drawing.Size(320, 220)
+        Me.pbxId.TabIndex = 10
+        Me.pbxId.TabStop = False
         '
         'Label7
         '
@@ -264,8 +264,8 @@ Partial Class scrBusquedaRegistros
         Me.ClientSize = New System.Drawing.Size(1006, 735)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.PictureBox2)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pbxId)
+        Me.Controls.Add(Me.pbxRostro)
         Me.Controls.Add(Me.dgvVisitas)
         Me.Controls.Add(Me.btnConsulta)
         Me.Controls.Add(Me.dtpFinal)
@@ -284,8 +284,8 @@ Partial Class scrBusquedaRegistros
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.dgvVisitas, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbxRostro, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pbxId, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -305,8 +305,8 @@ Partial Class scrBusquedaRegistros
     Friend WithEvents dtpFinal As System.Windows.Forms.DateTimePicker
     Friend WithEvents btnConsulta As System.Windows.Forms.Button
     Friend WithEvents dgvVisitas As System.Windows.Forms.DataGridView
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents pbxRostro As System.Windows.Forms.PictureBox
+    Friend WithEvents pbxId As System.Windows.Forms.PictureBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
 End Class
