@@ -23,8 +23,8 @@ Partial Class scrBusquedaRegistros
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(scrBusquedaRegistros))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmbCasaVisita = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -44,6 +44,7 @@ Partial Class scrBusquedaRegistros
         Me.pbxId = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.btnExportarExcel = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvVisitas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbxRostro, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,9 +181,9 @@ Partial Class scrBusquedaRegistros
         '
         Me.btnConsulta.Image = CType(resources.GetObject("btnConsulta.Image"), System.Drawing.Image)
         Me.btnConsulta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnConsulta.Location = New System.Drawing.Point(774, 66)
+        Me.btnConsulta.Location = New System.Drawing.Point(774, 17)
         Me.btnConsulta.Name = "btnConsulta"
-        Me.btnConsulta.Size = New System.Drawing.Size(198, 76)
+        Me.btnConsulta.Size = New System.Drawing.Size(198, 53)
         Me.btnConsulta.TabIndex = 7
         Me.btnConsulta.Text = "Consultar"
         Me.btnConsulta.UseVisualStyleBackColor = True
@@ -193,25 +194,25 @@ Partial Class scrBusquedaRegistros
         Me.dgvVisitas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvVisitas.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvVisitas.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.dgvVisitas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvVisitas.Location = New System.Drawing.Point(17, 243)
         Me.dgvVisitas.Name = "dgvVisitas"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvVisitas.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvVisitas.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.dgvVisitas.RowHeadersWidth = 61
         Me.dgvVisitas.RowTemplate.Height = 24
         Me.dgvVisitas.Size = New System.Drawing.Size(977, 217)
@@ -257,11 +258,23 @@ Partial Class scrBusquedaRegistros
         Me.Label8.TabIndex = 12
         Me.Label8.Text = "Identificación"
         '
+        'btnExportarExcel
+        '
+        Me.btnExportarExcel.Image = CType(resources.GetObject("btnExportarExcel.Image"), System.Drawing.Image)
+        Me.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnExportarExcel.Location = New System.Drawing.Point(774, 99)
+        Me.btnExportarExcel.Name = "btnExportarExcel"
+        Me.btnExportarExcel.Size = New System.Drawing.Size(198, 53)
+        Me.btnExportarExcel.TabIndex = 13
+        Me.btnExportarExcel.Text = "Exportar xls"
+        Me.btnExportarExcel.UseVisualStyleBackColor = True
+        '
         'scrBusquedaRegistros
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1006, 735)
+        Me.Controls.Add(Me.btnExportarExcel)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.pbxId)
@@ -309,4 +322,5 @@ Partial Class scrBusquedaRegistros
     Friend WithEvents pbxId As System.Windows.Forms.PictureBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents btnExportarExcel As System.Windows.Forms.Button
 End Class

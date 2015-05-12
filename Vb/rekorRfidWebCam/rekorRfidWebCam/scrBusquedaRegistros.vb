@@ -55,6 +55,47 @@ Public Class scrBusquedaRegistros
         dgvVisitas.Columns(5).Width = 150
     End Sub
 
+    Public Sub ExportarExcel(ByVal datos As DataGridView, ByVal directorio As String)
+        Dim strParse As String
+        'Dentro de un Try creamos el objeto Excel para que en caso de no tener instalado Office se maneje la excepción.
+        Try
+            'Creamos un objeto Excel
+            Dim xlApp As Object = CreateObject("Excel.Application")
+            'Creamos una nueva hoja de datos
+            Dim xlWB As Object = xlApp.WorkBooks.add
+            Dim xlWS As Object = xlWB.WorkSheets(1)
+
+            'Exportamos las cabeceras de la lista
+            For i As Integer = 0 To (datos.Columns.Count) - 1
+                xlWS.cells(1, i + 1).value = datos.Columns(i).HeaderText
+            Next
+
+            'Exportamos los valores de la lista
+            For fila As Integer = 0 To (datos.RowCount) - 1
+                For columna As Integer = 0 To (datos.Columns.Count) - 1
+                    strParse = datos.Rows(fila).Cells(columna).Value.ToString
+                    If columna = 3 Then
+                        strParse = strParse.Substring(0, 10)
+                    End If
+                    xlWS.cells(fila + 2, columna + 1).value = strParse
+                Next
+            Next
+
+            'Si el proceso fue correcto cerramos el archivo y la aplicación de excel e informamos al usuario
+            xlWB.saveas(directorio)
+            xlWS = Nothing
+            xlWB = Nothing
+            xlApp.quit()
+            xlApp = Nothing
+
+            'Informamos al usuario que el archivo se guardo con exito y que nombre se usará
+            MessageBox.Show("Archivo exportado correctamente:" & vbNewLine & directorio & vbNewLine & vbNewLine, "Rekor 32bits RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error al tratar de exportar:" & vbNewLine & directorio & vbNewLine & vbNewLine & "Asegure que este instalado Excel.", "Rekor 32bits RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
     Private Sub scrBusquedaRegistros_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Borramos los textos iniciales
         deshabilitar()
@@ -155,5 +196,16 @@ Public Class scrBusquedaRegistros
         Catch ex As Exception
             MessageBox.Show(ex.Message & vbCrLf & vbCrLf & "Error al cargar la imágen, verifique que el equipo se encuentre conectado a la red.", "Rekor 32bits RFID & WebCam", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub btnExportarExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnExportarExcel.Click
+        Dim save As New SaveFileDialog      'Creamos una variable para guardar la ruta y nombre del archivo
+        save.Filter = "Archivo Excel (.xlsx)| *.xlsx"  'Creamos un filtro para mostrar en el cuadro de Guardar
+
+        'Dentro de un IF capturamos la respuesta del cuadro para salvar el archivo
+        If save.ShowDialog = Windows.Forms.DialogResult.OK Then
+            'Pasamos los parámetros necesarios para la funcion ExportarExcel, este son la DataGrid y la Dirección donde se desea guardar
+            ExportarExcel(dgvVisitas, save.FileName)
+        End If
     End Sub
 End Class
