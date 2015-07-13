@@ -9,3 +9,6 @@ C:\Users\N30\documents\visual studio 2010\Projects\RekorRfidSalida\RekorRfidSali
 C:\Users\N30\documents\visual studio 2010\Projects\RekorRfidSalida\RekorRfidSalida\obj\x86\Debug\RekorRfidSalida.pdb
 C:\Users\N30\documents\visual studio 2010\Projects\RekorRfidSalida\RekorRfidSalida\obj\x86\Debug\RekorRfidSalida.scrSerial.resources
 C:\Users\N30\documents\visual studio 2010\Projects\RekorRfidSalida\RekorRfidSalida\obj\x86\Debug\RekorRfidSalida.mysqlSettings.resources
+C:\Users\N30\Documents\GitHub\Rekor\Vb\RekorRfidSalida\RekorRfidSalida\obj\x86\Debug\RekorRfidSalida.exe
+C:\Users\N30\Documents\GitHub\Rekor\Vb\RekorRfidSalida\RekorRfidSalida\obj\x86\Debug\RekorRfidSalida.xml
+C:\Users\N30\Documents\GitHub\Rekor\Vb\RekorRfidSalida\RekorRfidSalida\obj\x86\Debug\RekorRfidSalida.pdb

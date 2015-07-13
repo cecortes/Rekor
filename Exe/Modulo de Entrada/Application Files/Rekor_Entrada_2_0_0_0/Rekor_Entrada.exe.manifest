@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="Rekor_Entrada.exe" version="2.0.0.0" publicKeyToken="0ff745c1e094c72c" language="neutral" processorArchitecture="x86" type="win32" />
+  <description asmv2:iconFile="rekor2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Rekor_Entrada" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="Rekor_Entrada.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MySql.Data.dll" size="443904">
+      <assemblyIdentity name="MySql.Data" version="6.9.5.0" publicKeyToken="C5687FC88969C44D" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>x8bl4hNDViqWCEF2LL9HVDPpct8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Rekor_Entrada.exe" size="2755584">
+      <assemblyIdentity name="Rekor_Entrada" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>yTu3yCGHoAajzYJRSaR98xAQivQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="rekor2.ico" size="181059">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>DCeukjFqeeXDgZemPtmItLifCn8=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=N30-PC\N30" issuerKeyHash="1b2915717321305a22c925f4680658c8e30a074d" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>CxAhROIWVgPEO4E2/fkH3BIuSX8=</DigestValue></Reference></SignedInfo><SignatureValue>UUT9aLH+01e6zQZZlFZrchyn8mAq7Xw8SwgsySek3YvSspYBmTiQcjNJEmt/45aohMnLgNJoeyCfE2o6WSueOAWP7WtsqfjELYFljiMlpRjRLqNBRJDbqjlyCAuYDVyDVwxR6urZL1Nn9VTX8vBv5QeSOU0fKkcIITjpkwuc7ik=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>lumbydgnyHcfVeNMqAVjqgpCxdv3mY55UPQxDSOukhWNgm/yfYrFT+6cd23B/QOMIZz2LHTMBKDihzw+gzS6rSsaF6bsPJy1FPcgsaTKbDeKTUCxDZGMJEAjMGUl2pPp7ze1h1D7JY6doSxou136Tcf9RvfStsl0+urgqrxfTys=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="7f492e12dc07f9fd36813bc4035616e24421100b" Description="" Url=""><as:assemblyIdentity name="Rekor_Entrada.exe" version="2.0.0.0" publicKeyToken="0ff745c1e094c72c" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=N30-PC\N30</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>NF5AuM9NnzfbU8nQ/oB7RuIkogs=</DigestValue></Reference></SignedInfo><SignatureValue>Y7s7ABsJHKdSB37UjUDg3tmnrDjO7s+I/IFv2oScf1wexmhTjqZRUpnmviGSdc+5mJIN6iRQsBkQ3bABWVV1OqXopsYegkGwKO7GNWxkHBygs4oRR5aVR8/py2jeUSSD58eUxJqBLMnDxJNuk3g4+I5ngAvtsFdkvOeyZxRD+qI=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>lumbydgnyHcfVeNMqAVjqgpCxdv3mY55UPQxDSOukhWNgm/yfYrFT+6cd23B/QOMIZz2LHTMBKDihzw+gzS6rSsaF6bsPJy1FPcgsaTKbDeKTUCxDZGMJEAjMGUl2pPp7ze1h1D7JY6doSxou136Tcf9RvfStsl0+urgqrxfTys=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBwTCCASqgAwIBAgIQNU4asisjnJZBtJeXrDc23TANBgkqhkiG9w0BAQUFADAfMR0wGwYDVQQDHhQATgAzADAALQBQAEMAXABOADMAMDAeFw0xNTA1MTMyMzMyMzNaFw0xNjA1MTMwNTMyMzNaMB8xHTAbBgNVBAMeFABOADMAMAAtAFAAQwBcAE4AMwAwMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCW6ZvJ2CfIdx9V40yoBWOqCkLF2/eZjnlQ9DENI66SFY2Cb/J9isVP7px3bcH9A4whnPYsdMwEoOKHPD6DNLqtKxoXpuw8nLUU9yCxpMpsN4pNQLENkYwkQCMwZSXak+nvN7WHUPsljp2hLGi7XfpNx/1G99K2yXT66uCqvF9PKwIDAQABMA0GCSqGSIb3DQEBBQUAA4GBAAcLyhMBppBYG2RWT4e4IO14HfUk+xG8KqO1b8VrCoNOblwzQlJthf4mAXV7LNcuArTQ/LmY6YKVQAh5OEgOhpUKEQJnyV2EmzXeJs3sMcGQIkM+CAtuz1GckwCFfWatNsHbp0+ARRKk3Jlk8AnS/WIcQ1kPVZH/eTmU3gelNJN0</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
